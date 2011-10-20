@@ -27,11 +27,13 @@
 % \begin{macro}{\storebox}
 %    \begin{macrocode}
 \newcommand*\storebox{%
-    \collectboxcheckenv{storebox}%
-    \ifcollectboxenv
+    \begingroup
+        \def\@tempa{storebox}%
+    \ifx\@currenvir\@tempa
         \endgroup
         \expandafter\@storebox@env
     \else
+        \endgroup
         \expandafter\@storebox
     \fi
 }
@@ -61,7 +63,7 @@
 \def\@storebox@env#1{%
     \edef\@tempa{%
         \setbox\collectedbox\hbox\bgroup%
-            \def\noexpand\@tempa{\noexpand#1}%
+            \def\noexpand\the@storebox{\noexpand#1}%
     }%
     \@tempa
     \begingroup
@@ -75,6 +77,18 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\endstorebox}
+%    \begin{macrocode}
+\def\endstorebox{%
+    \unskip
+    \endgroup
+    \color@endgroup
+}
+%    \end{macrocode}
+% \end{macro}
+%
+%
+%
 % \begin{macro}{\@storebox@env@end}
 % This ends the box assignment and stores the box as PDF xform.
 % Then the given control sequence is set to the xform number.
@@ -84,20 +98,9 @@
         \egroup
         \pdfxform\collectedbox
         \endgroup
-        \mathchardef\expandafter\noexpand\@tempa=\pdflastxform
+        \mathchardef\expandafter\noexpand\the@storebox=\pdflastxform
     }%
     \@tempa
-}
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\endstorebox}
-%    \begin{macrocode}
-\def\endstorebox{%
-    \unskip
-    \endgroup
-    \color@endgroup
 }
 %    \end{macrocode}
 % \end{macro}
