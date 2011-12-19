@@ -50,7 +50,10 @@
 %    \begin{macrocode}
 \def\@storebox#1{%
     \begingroup
-    \@collectboxto\collectedbox{\pdfxform\collectedbox\endgroup\mathchardef#1=\pdflastxform}%
+    \@collectboxto\collectedbox{%
+        \immediate\pdfxform resources {\the\pdfpageresources}\collectedbox
+        \endgroup\mathchardef#1=\pdflastxform
+    }%
 }
 %    \end{macrocode}
 % \end{macro}
@@ -96,7 +99,7 @@
 \def\@storebox@env@end{%
     \edef\@tempa{%
         \egroup
-        \pdfxform\collectedbox
+        \immediate\pdfxform resources {\the\pdfpageresources}\collectedbox
         \endgroup
         \mathchardef\expandafter\noexpand\the@storebox=\pdflastxform
     }%
