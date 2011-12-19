@@ -24,10 +24,10 @@
 %<*driver>
 \ProvidesFile{storebox.dtx}[%
 %<=*DATE>
-    2011/10/21
+    2011/12/19
 %<=/DATE>
 %<=*VERSION>
-    v1.1
+    v1.2
 %<=/VERSION>
     DTX file for storebox]
 \documentclass{ydoc}
@@ -44,7 +44,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{137}
+% \CheckSum{143}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -66,6 +66,7 @@
 % \changes{v0.99}{2011/08/05}{Converted to DTX file.}
 % \changes{v1.0}{2011/09/22}{First release.}
 % \changes{v1.1}{2011/10/21}{Fixed issue with \env{storebox} environment with new \pkg{collectbox} version.}
+% \changes{v1.2}{2011/12/19}{Added PDF resources argument to support transparent material.}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -97,6 +98,12 @@
 % At the moment only PDF output is supported (i.e.\ \texttt{pdflatex} and \texttt{lualatex}).
 % If the stored content is not used in the document after all it is not written to the PDF (at least the \texttt{pdftex} manual says so).
 % For any other \TeX{} and output format the package simply falls back to use the normal savebox equivalents.
+%
+% \section{Known issues}
+% There are some known side effects with advanced graphic elements, namely transparencies and patterns.
+% These elements require special driver code which adds the required PDF instructions. For TikZ/PGF drawings this is done
+% by the |pdftex| driver of TikZ/PGF. However, for some reason transparent material is not supported, but shown fully solid if the
+% storebox also holds PDF patterns.
 %
 % \section{Options}
 % The package should be loaded without any options and then automatically checks for PDF output (using the \pkg{ifpdf} package).
