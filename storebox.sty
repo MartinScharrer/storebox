@@ -125,6 +125,9 @@
 %    \end{macrocode}
 % \end{macro}
 %
+\AtBeginDocument{%
+    \@ifpackageloaded{pgf}{\RequirePackage{storebox-pgf}{}}%
+}
 %
 %    \begin{macrocode}
 \else
