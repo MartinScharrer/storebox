@@ -12,9 +12,11 @@
 %    \begin{macrocode}
 \DeclareOption{disable}{\let\ifstorebox\iffalse}
 \DeclareOption{enable}{\let\ifstorebox\iftrue}
+\DeclareOption{immediate}{\let\storebox@immediate\immediate}
+\DeclareOption{delayed}{\let\storebox@immediate\relax}
+\ExecuteOptions{delayed}
 \ProcessOptions*
-\edef\@tempa{\@ptionlist{\@currname.\@currext}}
-\ifx\@tempa\empty
+\expandafter\ifx\csname ifstorebox\endcsname\relax
     \RequirePackage{ifpdf}
     \expandafter\let\csname ifstorebox\expandafter\endcsname\csname ifpdf\endcsname
 \fi
@@ -51,7 +53,7 @@
 \def\@storebox#1{%
     \begingroup
     \@collectboxto\collectedbox{%
-        \immediate\pdfxform resources {\the\pdfpageresources}\collectedbox
+        \storebox@immediate\pdfxform resources {\the\pdfpageresources}\collectedbox
         \endgroup\mathchardef#1=\pdflastxform
     }%
 }
