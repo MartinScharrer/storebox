@@ -1,4 +1,11 @@
 %    \begin{macrocode}
+%% This support package contains patches for the file 'pgfsys-pdftex.def' file from
+%% the TikZ/PGF bundle. All patches code is copyright by the TikZ/PGF authors
+%% and is used in this file according to the LPPL license.
+%% Please see the copyright and license notices in the 'pgfsys-pdftex.def' file.
+%%
+%% The rest of the code of this file is under the following copyright and licence:
+%%
 %<!COPYRIGHT>
 \ProvidesPackage{storebox-pgf}[%
 %<!DATE>
@@ -12,6 +19,15 @@
 %    \begin{macrocode}
 \begingroup
 \let\on@line\@gobble
+%
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+\@ifl@ter{def}{pgfsys-pdftex}{2009/05/23}{%
+   \PackageInfo{storebox-pgf}{Newer version of 'pgfsys-pdftex.def' found.\MessageBreak No patches applied.}%
+   \endgroup
+   \endinput
+}{}%
 %    \end{macrocode}
 %
 % \begin{macro}{\storebox@patch}

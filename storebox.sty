@@ -125,9 +125,12 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% Load PGF driver patches if required:
+%    \begin{macrocode}
 \AtBeginDocument{%
     \@ifpackageloaded{pgf}{\RequirePackage{storebox-pgf}{}}%
 }
+%    \end{macrocode}
 %
 %    \begin{macrocode}
 \else

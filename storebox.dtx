@@ -15,7 +15,7 @@
 %% The Current Maintainer of this work is Martin Scharrer.
 %%
 %% This work consists of the files storebox.dtx and storebox.ins
-%% and the derived filebase storebox.sty.
+%% and the derived filebase storebox.sty and storebox-pgf.sty.
 %%
 %<=/COPYRIGHT>
 % \fi
@@ -24,10 +24,10 @@
 %<*driver>
 \ProvidesFile{storebox.dtx}[%
 %<=*DATE>
-    2011/12/19
+    2011/12/20
 %<=/DATE>
 %<=*VERSION>
-    v1.2
+    v1.3
 %<=/VERSION>
     DTX file for storebox]
 \documentclass{ydoc}
@@ -44,7 +44,7 @@
 %</driver>
 % \fi
 %
-% \CheckSum{143}
+% \CheckSum{674}
 %
 % \CharacterTable
 %  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
@@ -67,6 +67,7 @@
 % \changes{v1.0}{2011/09/22}{First release.}
 % \changes{v1.1}{2011/10/21}{Fixed issue with \env{storebox} environment with new \pkg{collectbox} version.}
 % \changes{v1.2}{2011/12/19}{Added PDF resources argument to support transparent material.}
+% \changes{v1.3}{2011/12/20}{Added patch for PDF pdftex driver to fully support transparent material and shadings.}
 %
 % \DoNotIndex{\newcommand,\newenvironment}
 %
@@ -102,8 +103,13 @@
 % \section{Known issues}
 % There are some known side effects with advanced graphic elements, namely transparencies and shadings.
 % These elements require special driver code which adds the required PDF instructions. For TikZ/PGF drawings this is done
-% by the |pdftex| driver of TikZ/PGF. However, for some reason transparent material is not supported, but shown fully solid if the
-% storebox also holds PDF shadings.
+% by the |pdftex| driver of TikZ/PGF. However, due to a 
+% \href{https://sourceforge.net/tracker/?func=detail&atid=752792&aid=3462542&group_id=142562}{bug in this driver}
+% transparent material is not supported, but shown fully opaque if the storebox also holds PDF shadings.
+% This affects \file{pgfsys-pdftex.def} in v1.26 from 2009/05/22 and earlier versions.
+% Since \pkg{storebox} v1.3 from 2011/12/20 a set of patches for the PGF |pdftex| driver is loaded (as support package \pkg{storebox-pgf}),
+% so that both transparencies and shadings are supported together. The patches are not loaded if a new version of the driver is detected.
+% Please report all issues with this patches to the \pkg{storebox} author, not to the TikZ/PGF authors.
 %
 % \section{Options}
 % The package should be loaded without any options and then automatically checks for PDF output (using the \pkg{ifpdf} package).
