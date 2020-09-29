@@ -1,6 +1,6 @@
 CONTRIBUTION  = storebox
 NAME          = Martin Scharrer
-EMAIL         = martin@scharrer.me
+EMAIL         = martin@scharrer-online.de
 DIRECTORY     = /macros/latex/contrib/${CONTRIBUTION}
 LICENSE       = free
 FREEVERSION   = lppl
