@@ -1,9 +1,9 @@
 LaTeX package 'storebox'
 ~~~~~~~~~~~~~~~~~~~~~~~~
-Copyright (c) 2011-2016 by Martin Scharrer <martin@scharrer.me>
+Copyright (c) 2011-2022 by Martin Scharrer <martin.scharrer@web.de>
 WWW: http://latex.scharrer.me/
 CTAN: http://www.ctan.org/pkg/storebox
-Code repository: https://bitbucket.org/martin_scharrer/storebox
+Code repository: https://github.com/MartinScharrer/storebox/
 
 This package provides "store boxes" which have the same user interface like normal LaTeX "save boxes", but only 
 store the content once in the output file even if it is used several times.
